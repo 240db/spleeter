@@ -49,15 +49,17 @@ Want to try it out but don't want to install anything ? We have set up a [Google
 Ready to dig into it ? In a few lines you can install **Spleeter**  and separate the vocal and accompaniment parts from an example audio file.
 You need first to install `ffmpeg` and `libsndfile`. It can be done on most platform using [Conda](https://github.com/deezer/spleeter/wiki/1.-Installation#using-conda):
 
+
+⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+
+### pip install spleeter broken
+- dependecy hell
+- use poetry instead!
 ```bash
 # install dependencies using conda
 conda install -c conda-forge ffmpeg libsndfile
 # install spleeter with pip
-pip install spleeter
-# download an example audio file (if you don't have wget, use another tool for downloading)
-wget https://github.com/deezer/spleeter/raw/master/audio_example.mp3
-# separate the example audio into two components
-spleeter separate -p spleeter:2stems -o output audio_example.mp3
+pip install spleeter # this is broken ; dependecy hell - use poetry instead!
 ```
 
 > :warning: Note that we no longer recommend using `conda` for installing spleeter.
@@ -82,6 +84,17 @@ pip install poetry
 poetry install
 # Run unit test suite
 poetry run pytest tests/
+# Run spleeter
+poetry run spleeter --help
+# get spleeter path
+poetry run which spleeter
+# in case it did not get spleeter to path
+ln -s $(poetry run which spleeter) /usr/local/bin/spleeter
+# now you can test spleeter!
+# download an example audio file (if you don't have wget, use another tool for downloading)
+wget https://github.com/deezer/spleeter/raw/master/audio_example.mp3
+# separate the example audio into two components
+spleeter separate -p spleeter:2stems -o output audio_example.mp3
 ```
 
 ## Reference
